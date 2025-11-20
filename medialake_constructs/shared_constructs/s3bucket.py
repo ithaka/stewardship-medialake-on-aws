@@ -56,7 +56,6 @@ class S3Bucket(Construct):
         bucket_props = {
             "encryption": s3.BucketEncryption.KMS,
             "encryption_key": self.kms_key,
-            "block_public_access": s3.BlockPublicAccess.BLOCK_ALL,
             "versioned": True,
             "enforce_ssl": True,
             "removal_policy": (
