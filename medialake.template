@@ -632,10 +632,11 @@ Resources:
                 - echo Deploying CDK stacks
                 - cd $CODEBUILD_SRC_DIR/$CDK_DIR
                 # Bootstrap current region (non-fatal if it fails, bucket may already exist)
-                - cdk bootstrap || echo "Bootstrap failed or already exists, continuing..."
+                # Note: --public-access-block-configuration false is required due to SCP restrictions
+                - cdk bootstrap --public-access-block-configuration false || echo "Bootstrap failed or already exists, continuing..."
                 # Always bootstrap us-east-1 for CloudFront WAF deployment (idempotent operation)
                 - echo "Bootstrapping us-east-1 for CloudFront WAF deployment"
-                - cdk bootstrap aws://${AWS::AccountId}/us-east-1 || echo "Bootstrap us-east-1 failed or already exists, continuing..."
+                - cdk bootstrap aws://${AWS::AccountId}/us-east-1 --public-access-block-configuration false || echo "Bootstrap us-east-1 failed or already exists, continuing..."
                 # Deploy all stacks
                 - cdk deploy --all --require-approval never || (echo "CDK deploy failed" && exit 1)
             post_build:
