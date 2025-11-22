@@ -47,7 +47,6 @@ class DynamoDBCloudTrailLogs(Construct):
             bucket_name=bucket_name,
             removal_policy=RemovalPolicy.DESTROY,
             auto_delete_objects=True,
-            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
             encryption=s3.BucketEncryption.S3_MANAGED,
             enforce_ssl=True,
             versioned=True,

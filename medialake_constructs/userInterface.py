@@ -90,7 +90,6 @@ class UIConstructProps:
         os.path.dirname(os.path.dirname(__file__)), "medialake_user_interface"
     )
     removal_policy: RemovalPolicy = RemovalPolicy.DESTROY
-    block_public_access: s3.BlockPublicAccess = s3.BlockPublicAccess.BLOCK_ALL
     auto_delete_objects: bool = True
     website_index_document: str = "index.html"
     website_error_document: str = "index.html"

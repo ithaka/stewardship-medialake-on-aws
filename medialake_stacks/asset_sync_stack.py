@@ -543,7 +543,6 @@ class AssetSyncStack(cdk.NestedStack):
                 s3.LifecycleRule(expiration=Duration.days(30), prefix="job-reports/"),
             ],
             encryption=s3.BucketEncryption.S3_MANAGED,
-            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
             enforce_ssl=True,
         )
         return self._results_bucket
